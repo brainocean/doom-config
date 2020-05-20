@@ -57,9 +57,9 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;(use-package forge
-;  :config
-;  (add-to-list 'forge-alist '("github.wdf.sap.corp" "github.wdf.sap.corp/api/v3" "github.wdf.sap.corp" forge-github-repository)))
+(use-package forge
+  :config
+  (add-to-list 'forge-alist '("github.wdf.sap.corp" "github.wdf.sap.corp/api/v3" "github.wdf.sap.corp" forge-github-repository)))
 
 
 ; configurations for JavaScript and React development
@@ -70,3 +70,7 @@
 
 ; need this setting for displaying picture in Jupyter notebooks
 (setq ein:output-area-inlined-images t)
+
+; use yasnippet completion in js2 mode
+;(after! js2-mode
+;  (set-company-backend! 'js2-mode 'company-tide 'company-yasnippet))
