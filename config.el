@@ -72,5 +72,9 @@
 (setq ein:output-area-inlined-images t)
 
 ; use yasnippet completion in js2 mode
-;(after! js2-mode
-;  (set-company-backend! 'js2-mode 'company-tide 'company-yasnippet))
+(after! js2-mode
+  (set-company-backend! 'js2-mode 'company-tide 'company-yasnippet))
+
+(add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'css-mode-hook 'skewer-css-mode)
+(add-hook 'web-mode-hook 'skewer-html-mode)
