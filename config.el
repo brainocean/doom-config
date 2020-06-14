@@ -19,7 +19,7 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fira Code" :size 18))
+(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 18))
 
 ;; Use Sarasa Mono SC for org table because it helps align Chinese and English in table
 (after! org (set-face-attribute 'org-table nil :font "Sarasa Mono SC 18"))
@@ -27,7 +27,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-material)
+(setq doom-theme 'doom-oceanic-next)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -57,19 +57,20 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(use-package forge
-  :config
-  (add-to-list 'forge-alist '("github.wdf.sap.corp" "github.wdf.sap.corp/api/v3" "github.wdf.sap.corp" forge-github-repository)))
+;(use-package forge
+  ;:config
+  ;(add-to-list 'forge-alist '("github.wdf.sap.corp" "github.wdf.sap.corp/api/v3" "github.wdf.sap.corp" forge-github-repository)))
 
+(setq doom-modeline-height 20)
+(setq doom-modeline-icon (display-graphic-p))
+(setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-major-mode-color-icon t)
 
 ; configurations for JavaScript and React development
 (setq-default js-indent-level 2)
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
 (add-hook 'js2-mode-hook 'prettier-js-mode)
-
-; need this setting for displaying picture in Jupyter notebooks
-(setq ein:output-area-inlined-images t)
 
 ; use yasnippet completion in js2 mode
 (after! js2-mode
@@ -78,3 +79,18 @@
 (add-hook 'js2-mode-hook 'skewer-mode)
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'web-mode-hook 'skewer-html-mode)
+
+(setq completion-ignore-case  t)
+(setq tide-completion-ignore-case t)
+
+(setq prettier-js-show-errors nil)
+
+; need this setting for displaying picture in Jupyter notebooks
+(setq ein:output-area-inlined-images t)
+
+;; (setq url-proxy-services
+;;    '(("no_proxy" . "^\\(localhost\\|127\\.0\\.0\\.1\\|10\\..*\\|192\\.168\\..*\\|*\\.sap\\.corp\\|*\\.corp\\.sap\\)")
+;;      ("http" . "proxy.pvgl.sap.corp:8080")
+;;      ("https" . "proxy.pvgl.sap.corp:8080")))
+
+(put 'dired-find-alternate-file 'disabled nil)
