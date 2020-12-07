@@ -46,5 +46,7 @@
 ;; our package manager can't deal with; see raxod502/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
 
-(package! prettier-js)
-(package! yasnippet-snippets)
+;; (package! prettier-js)
+;; (package! yasnippet-snippets)
+(package! impatient-mode)
+(package! graphql-mode)

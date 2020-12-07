@@ -57,31 +57,45 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;(use-package forge
-  ;:config
-  ;(add-to-list 'forge-alist '("github.wdf.sap.corp" "github.wdf.sap.corp/api/v3" "github.wdf.sap.corp" forge-github-repository)))
+;; (use-package forge
+;;   :config
+;;   (add-to-list 'forge-alist '("github.wdf.sap.corp" "github.wdf.sap.corp/api" "github.wdf.sap.corp" forge-github-repository)))
+;; (setq ghub-use-workaround-for-emacs-bug 'force)
+(doom/set-indent-width 2)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(setq tab-width 2)
 
 (setq doom-modeline-height 20)
 (setq doom-modeline-icon (display-graphic-p))
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-major-mode-color-icon t)
 
-; configurations for JavaScript and React development
-(setq-default js-indent-level 2)
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
-(add-hook 'js2-mode-hook 'prettier-js-mode)
+; indents configurations for JavaScript and React development
+(setq js-indent-level 2)
+(setq-default js2-basic-offset 2)
+(setq-default typescript-indent-level 2)
+(setq-default web-mode-markup-indent-offset 2)
+(setq-default web-mode-code-indent-offset 2)
+(setq tide-format-options '(:indentSize 2 :tabSize 2 :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
 
-; use yasnippet completion in js2 mode
-(after! js2-mode
-  (set-company-backend! 'js2-mode 'company-tide 'company-yasnippet))
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
 
-(add-hook 'js2-mode-hook 'skewer-mode)
-(add-hook 'css-mode-hook 'skewer-css-mode)
-(add-hook 'web-mode-hook 'skewer-html-mode)
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . typescript-tsx-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-tsx-mode))
+
+;; (add-hook 'js2-mode-hook 'skewer-mode)
+;; (add-hook 'css-mode-hook 'skewer-css-mode)
+;; (add-hook 'web-mode-hook 'skewer-html-mode)
 
 (setq completion-ignore-case  t)
 (setq tide-completion-ignore-case t)
+
+(setq +format-with-lsp nil)
 
 (setq prettier-js-show-errors nil)
 
@@ -94,3 +108,7 @@
 ;;      ("https" . "proxy.pvgl.sap.corp:8080")))
 
 (put 'dired-find-alternate-file 'disabled nil)
+
+(setq racket-program "/Applications/Racket v7.8/bin/racket")
+
+(setq comint-prompt-read-only nil)
