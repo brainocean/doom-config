@@ -49,4 +49,5 @@
 ;; (package! prettier-js)
 ;; (package! yasnippet-snippets)
 (package! impatient-mode)
-(package! graphql-mode)
+;;(package! graphql-mode)
+(package! evil-cleverparens)

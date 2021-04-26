@@ -19,7 +19,15 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 18))
+;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 18 :weight 'light))
+;; (setq doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 28))
+(setq doom-font (font-spec :family "Iosevka SS03" :size 20 :weight 'light))
+;; (setq doom-big-font (font-spec :family "Iosevka SS03" :size 28 :weight 'light))
+
+(dolist (charset '(kana han symbol cjk-misc bopomofo))
+  (set-fontset-font (frame-parameter nil 'font)
+                    charset
+                    (font-spec :family "PingFang SC" :size 18)))
 
 ;; Use Sarasa Mono SC for org table because it helps align Chinese and English in table
 (after! org (set-face-attribute 'org-table nil :font "Sarasa Mono SC 18"))
@@ -33,10 +41,13 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
+(setq evil-cleverparens-use-s-and-S nil)
+
+(add-hook 'prog-mode-hook #'mac-auto-operator-composition-mode)
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type `relative)
-
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -56,6 +67,10 @@
 ;; they are implemented.
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+(add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
+(add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
+(add-hook 'racket-mode-hook #'evil-cleverparens-mode)
 
 ;; (use-package forge
 ;;   :config
@@ -112,3 +127,5 @@
 (setq racket-program "/Applications/Racket v7.8/bin/racket")
 
 (setq comint-prompt-read-only nil)
+
+(setq clojure-toplevel-inside-comment-form t)
