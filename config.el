@@ -19,10 +19,11 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 18 :weight 'light))
+;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 20 :weight 'semilight))
 ;; (setq doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 28))
-(setq doom-font (font-spec :family "Iosevka SS03" :size 20 :weight 'light))
-;; (setq doom-big-font (font-spec :family "Iosevka SS03" :size 28 :weight 'light))
+;; (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 20 :weight 'light))
+(setq doom-font (font-spec :family "Iosevka SS04" :size 20 :weight 'semilight))
+(setq doom-big-font (font-spec :family "Iosevka SS04" :size 30 :weight 'semilight))
 
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)
@@ -71,6 +72,10 @@
 (add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
 (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 (add-hook 'racket-mode-hook #'evil-cleverparens-mode)
+
+(map! :map emacs-lisp-mode-map
+      "C-c C-c" #'eval-defun
+      "C-c C-e" #'eval-last-sexp)
 
 ;; (use-package forge
 ;;   :config
