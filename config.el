@@ -22,8 +22,8 @@
 ;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 20 :weight 'semilight))
 ;; (setq doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 28))
 ;; (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 20 :weight 'light))
-(setq doom-font (font-spec :family "Iosevka SS04" :size 20 :weight 'semilight))
-(setq doom-big-font (font-spec :family "Iosevka SS04" :size 30 :weight 'semilight))
+(setq doom-font (font-spec :family "Iosevka SS04" :size 18 :weight 'semilight))
+(setq doom-big-font (font-spec :family "Iosevka SS04" :size 28 :weight 'semilight))
 
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)
@@ -31,7 +31,7 @@
                     (font-spec :family "PingFang SC" :size 18)))
 
 ;; Use Sarasa Mono SC for org table because it helps align Chinese and English in table
-(after! org (set-face-attribute 'org-table nil :font "Sarasa Mono SC 18"))
+(after! org (set-face-attribute 'org-table nil :font (if writeroom-mode "Sarasa Mono SC 38"  "Sarasa Mono SC 18")))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -72,6 +72,12 @@
 (add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
 (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 (add-hook 'racket-mode-hook #'evil-cleverparens-mode)
+
+(use-package evil-pinyin
+  :init
+  (setq-default evil-pinyin-with-search-rule 'always)
+  :config
+  (global-evil-pinyin-mode))
 
 (map! :map emacs-lisp-mode-map
       "C-c C-c" #'eval-defun
@@ -134,3 +140,5 @@
 (setq comint-prompt-read-only nil)
 
 (setq clojure-toplevel-inside-comment-form t)
+
+(setq lsp-ui-sideline-show-code-actions nil)
