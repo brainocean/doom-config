@@ -22,16 +22,26 @@
 ;; (setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 20 :weight 'semilight))
 ;; (setq doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 28))
 ;; (setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 20 :weight 'light))
-(setq doom-font (font-spec :family "Iosevka SS04" :size 18 :weight 'semilight))
-(setq doom-big-font (font-spec :family "Iosevka SS04" :size 28 :weight 'semilight))
 
-(dolist (charset '(kana han symbol cjk-misc bopomofo))
+(setq normal-font-size 18)
+(setq big-font-size 28)
+
+(setq doom-font (font-spec :family "Iosevka SS04" :size normal-font-size :weight 'semilight))
+(setq doom-big-font (font-spec :family "Iosevka SS04" :size big-font-size :weight 'semilight))
+
+(defun set-chinese-font (size)
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)
                     charset
-                    (font-spec :family "PingFang SC" :size 18)))
+                    (font-spec :family "PingFang SC" :size size))))
 
-;; Use Sarasa Mono SC for org table because it helps align Chinese and English in table
-(after! org (set-face-attribute 'org-table nil :font (if writeroom-mode "Sarasa Mono SC 38"  "Sarasa Mono SC 18")))
+
+(defun set-org-table-font (size)
+  ;; Use Sarasa Mono SC for org table because it helps align Chinese and English in table
+  (set-face-attribute 'org-table nil :font (font-spec :family "Sarasa Mono SC" :size size)))
+
+(set-chinese-font normal-font-size)
+(after! org (set-org-table-font normal-font-size))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -45,6 +55,18 @@
 (setq evil-cleverparens-use-s-and-S nil)
 
 (add-hook 'prog-mode-hook #'mac-auto-operator-composition-mode)
+
+(defun set-special-fonts (big?)
+  (interactive)
+  (let ((size (if big? big-font-size normal-font-size)))
+    (progn
+      (set-chinese-font size)
+      (set-org-table-font size))))
+
+(defun on-writeroom-mode ()
+  (set-special-fonts writeroom-mode))
+
+(add-hook 'writeroom-mode-hook #'on-writeroom-mode)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
