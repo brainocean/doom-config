@@ -40,7 +40,7 @@
   ;; Use Sarasa Mono SC for org table because it helps align Chinese and English in table
   (set-face-attribute 'org-table nil :font (font-spec :family "Sarasa Mono SC" :size size)))
 
-(set-chinese-font normal-font-size)
+;; (set-chinese-font normal-font-size)
 ;; (after! org (set-org-table-font normal-font-size))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -54,7 +54,7 @@
 
 (setq evil-cleverparens-use-s-and-S nil)
 
-(add-hook 'prog-mode-hook #'mac-auto-operator-composition-mode)
+;; (add-hook 'prog-mode-hook #'mac-auto-operator-composition-mode)
 
 (defun set-special-fonts (big?)
   (interactive)
@@ -67,6 +67,7 @@
   (set-special-fonts writeroom-mode))
 
 ;; (add-hook 'writeroom-mode-hook #'on-writeroom-mode)
+
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
