@@ -71,7 +71,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type nil)
+(setq display-line-numbers-type `relative)
 
 (global-display-fill-column-indicator-mode +1)
 (set-face-attribute 'fill-column-indicator nil :foreground "grey30")
