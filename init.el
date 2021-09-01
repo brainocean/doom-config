@@ -19,7 +19,8 @@
        ;;japanese
 
        :completion
-       company             ; the ultimate code completion backend
+       ;; (company +childframe)             ; the ultimate code completion backend
+       company
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        (ivy +icons +prescient)                              ; a search engine for love and life
@@ -38,7 +39,7 @@
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints                    ; highlight the region an operation acts on
        (popup +defaults)          ; tame sudden yet inevitable temporary windows
-       (ligatures +extra +iosevka)       ; ligatures or substitute text with pretty symbols
+       (ligatures +iosevka)       ; ligatures or substitute text with pretty symbols
        ;;tabs              ; an tab bar for Emacs
        ;;treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
@@ -105,8 +106,8 @@
        :lang
        ;;agda              ; types of types of types of types...
        ;;cc                ; C/C++/Obj-C madness
-       ;; (clojure +lsp)           ; java with a lisp
-       clojure
+       (clojure +lsp)           ; java with a lisp
+       ;; clojure
        common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
@@ -140,7 +141,7 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +pretty +present)          ; organize your plain life in plain text
+       (org +gnuplot +pretty +present +roam2)          ; organize your plain life in plain text
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
@@ -160,7 +161,7 @@
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
        web                              ; the tubes
-       ;;yaml              ; JSON, but readable
+       yaml              ; JSON, but readable
 
        :os
        macos                            ; MacOS-specific commands

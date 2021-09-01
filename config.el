@@ -48,6 +48,21 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-oceanic-next)
 
+;; Chinese input method configuration
+(use-package! rime
+  :init
+  (setq rime-user-data-dir "~/Library/Rime")
+  (setq rime-show-candidate 'posframe)
+  (setq rime-inline-ascii-trigger 'shift-l)
+  (setq rime-disable-predicates
+        '(rime-predicate-evil-mode-p
+          rime-predicate-after-alphabet-char-p
+          rime-predicate-prog-in-code-p))
+  :custom
+  (rime-librime-root "~/.emacs.d/librime/dist")
+  (default-input-method "rime"))
+
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
@@ -123,6 +138,10 @@
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-major-mode-color-icon t)
 
+(unless (equal "Battery status not available" (battery))
+  (display-battery-mode 1))                           ; On laptops it's nice to know how much power you have
+
+
 ; indents configurations for JavaScript and React development
 (setq js-indent-level 2)
 (setq-default js2-basic-offset 2)
@@ -130,6 +149,11 @@
 (setq-default web-mode-markup-indent-offset 2)
 (setq-default web-mode-code-indent-offset 2)
 (setq tide-format-options '(:indentSize 2 :tabSize 2 :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
+
+
+(setq-default delete-by-moving-to-trash t)
+
+(display-time-mode 1)                             ; Enable time in the mode-line
 
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
@@ -168,3 +192,6 @@
 (setq clojure-toplevel-inside-comment-form t)
 
 (setq lsp-ui-sideline-show-code-actions nil)
+
+(setq-default evil-escape-key-sequence "kj")
+(setq-default evil-escape-delay 0.2)
