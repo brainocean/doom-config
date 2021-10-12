@@ -52,4 +52,5 @@
 ;; (package! impatient-mode)
 (package! evil-cleverparens)
 (package! evil-pinyin)
+(package! posframe)
 (package! rime)

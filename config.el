@@ -51,7 +51,7 @@
 ;; Chinese input method configuration
 (use-package! rime
   :init
-  (setq rime-user-data-dir "~/Library/Rime")
+  (setq rime-user-data-dir "~/.doom.d/Rime")
   (setq rime-show-candidate 'posframe)
   (setq rime-inline-ascii-trigger 'shift-l)
   (setq rime-disable-predicates
@@ -62,6 +62,50 @@
   (rime-librime-root "~/.emacs.d/librime/dist")
   (default-input-method "rime"))
 
+
+;; (setq-default pyim-english-input-switch-functions
+;;               '(pyim-probe-dynamic-english pyim-probe-isearch-mode pyim-probe-program-mode pyim-probe-org-structure-template))
+;; (setq-default pyim-punctuation-half-width-functions '(pyim-probe-punctuation-line-beginning pyim-probe-punctuation-after-punctuation))
+
+;; (use-package! pyim
+;;   ;; :demand t
+;;   ;; :defer 1
+;;   ;; :diminish pyim-isearch-mode
+;;   :init
+;;   (setq default-input-method "pyim"
+;;         ;; pyim-title "ㄓ"
+;;         pyim-default-scheme 'rime-microsoft-shuangpin
+;;         pyim-page-length 9
+;;         pyim-page-tooltip 'popup))
+
+;;   ;; :config
+;;   ;; (setq-default pyim-english-input-switch-functions
+;;   ;;               '(pyim-probe-dynamic-english
+;;   ;;                 pyim-probe-evil-normal-mode
+;;   ;;                 pyim-probe-program-mode
+;;   ;;                 pyim-probe-org-structure-template))
+
+;;   ;; (setq-default pyim-punctuation-half-width-functions
+;;   ;;               '(pyim-probe-punctuation-line-beginning
+;;                   ;; pyim-probe-punctuation-after-punctuation)))
+
+;; (defvar +my-ext-dir (expand-file-name "~/.doom.d/extensions"))
+;; (defvar liberime-is-loaded nil)
+
+;; (use-package! liberime
+;;   ;; :when (featurep! +rime)
+;;   ;; :load-path (lambda()(expand-file-name "liberime" +my-ext-dir))
+;;   :defer 1
+;;   :unless liberime-is-loaded
+;;   :custom
+;;   (rime_share_data_dir "/Library/Input Methods/Squirrel.app/Contents/SharedSupport/")
+;;   (rime_user_data_dir "~/Library/Rime")
+;;   :init
+;;   (module-load (expand-file-name "liberime-core.so" +my-ext-dir))
+;;   :config
+;;   (setq liberime-is-loaded t)
+;;   (liberime-start rime_share_data_dir rime_user_data_dir)
+;;   (liberime-select-schema  "double_pinyin_mspy"))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -194,4 +238,4 @@
 (setq lsp-ui-sideline-show-code-actions nil)
 
 (setq-default evil-escape-key-sequence "kj")
-(setq-default evil-escape-delay 0.2)
+(setq-default evil-escape-delay 0.4)

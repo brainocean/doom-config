@@ -15,12 +15,12 @@
 ;;      directory (for easy access to its source code).
 
 (doom! :input
-       ;;chinese
+       ;; chinese
        ;;japanese
 
        :completion
-       ;; (company +childframe)             ; the ultimate code completion backend
-       company
+       (company +childframe)             ; the ultimate code completion backend
+       ;; company
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        (ivy +icons +prescient)                              ; a search engine for love and life
