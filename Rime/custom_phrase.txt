@@ -47,7 +47,6 @@ CleanMyMac X	cmm	1
 Command	cm	1
 Control	ct	2
 CarPlay	cp	1
-CleanShot X	cs
 Download	dl	1
 Enpass	enp
 Emoji	em
