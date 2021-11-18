@@ -56,11 +56,13 @@
   (setq rime-inline-ascii-trigger 'shift-l)
   (setq rime-disable-predicates
         '(rime-predicate-evil-mode-p
+          rime-predicate-punctuation-after-ascii-p
           rime-predicate-after-alphabet-char-p
           rime-predicate-prog-in-code-p))
   :custom
   (rime-librime-root "~/.emacs.d/librime/dist")
   (default-input-method "rime"))
+
 
 
 ;; (setq-default pyim-english-input-switch-functions
@@ -111,7 +113,7 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
-(setq evil-cleverparens-use-s-and-S nil)
+;; (setq evil-cleverparens-use-s-and-S nil)
 
 ;; (add-hook 'prog-mode-hook #'mac-auto-operator-composition-mode)
 
@@ -154,9 +156,17 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
-(add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
-(add-hook 'racket-mode-hook #'evil-cleverparens-mode)
+;; (add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
+;; (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
+
+(use-package lispy
+  :config
+  (unbind-key "[" lispy-mode-map)
+  (unbind-key "[" lispy-mode-map-evilcp)
+  (unbind-key "[" lispy-mode-map-lispy)
+  (unbind-key "]" lispy-mode-map)
+  (unbind-key "]" lispy-mode-map-evilcp)
+  (unbind-key "]" lispy-mode-map-lispy))
 
 (use-package evil-pinyin
   :init
@@ -229,7 +239,12 @@
 
 (put 'dired-find-alternate-file 'disabled nil)
 
-(setq racket-program "/Applications/Racket v7.8/bin/racket")
+;; racket related configuration
+(setq racket-program "/Applications/Racket v8.2/bin/racket")
+;; (add-hook 'racket-mode-hook #'evil-cleverparens-mode)
+(use-package racket-mode
+  :bind (:map racket-mode-map
+         ("C-c C-c" . racket-send-definition)))
 
 (setq comint-prompt-read-only nil)
 
@@ -239,3 +254,7 @@
 
 (setq-default evil-escape-key-sequence "kj")
 (setq-default evil-escape-delay 0.4)
+
+;; (custom-set-faces
+;; '(rainbow-delimiters-depth-1-face ((t (:foreground "darkgrey"))))
+;; )
