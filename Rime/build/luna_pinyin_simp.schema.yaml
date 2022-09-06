@@ -2,7 +2,7 @@ __build_info:
   rime_version: 1.7.2
   timestamps:
     default: 1613228859
-    default.custom: 1634024755
+    default.custom: 1638861420
     key_bindings: 1613228859
     key_bindings.custom: 0
     luna_pinyin_simp.custom: 1634024755
@@ -65,7 +65,6 @@ key_binder:
     - {accept: equal, send: Page_Down, when: has_menu}
     - {accept: bracketleft, send: Page_Up, when: paging}
     - {accept: bracketright, send: Page_Down, when: has_menu}
-    - {accept: "Control+Shift+4", toggle: simplification, when: always}
     - {accept: "Control+Shift+4", toggle: zh_simp, when: always}
     - {accept: "Control+Shift+dollar", toggle: zh_simp, when: always}
   import_preset: default
