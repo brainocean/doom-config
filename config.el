@@ -26,19 +26,19 @@
 (setq normal-font-size 18)
 (setq big-font-size 28)
 
-(setq doom-font (font-spec :family "Iosevka SS04" :size normal-font-size :weight 'semilight))
-(setq doom-big-font (font-spec :family "Iosevka SS04" :size big-font-size :weight 'semilight))
+(setq doom-font (font-spec :family "Iosevka" :size normal-font-size :weight 'light))
+(setq doom-big-font (font-spec :family "Iosevka" :size big-font-size ))
 
 (defun set-chinese-font (size)
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
                       charset
-                      (font-spec :family "PingFang SC" :size size))))
+                      (font-spec :family "Sarasa Mono SC Nerd" :size size))))
 
 
 (defun set-org-table-font (size)
   ;; Use Sarasa Mono SC for org table because it helps align Chinese and English in table
-  (set-face-attribute 'org-table nil :font (font-spec :family "Sarasa Mono SC" :size size)))
+  (set-face-attribute 'org-table nil :font (font-spec :family "Sarasa Mono SC Nerd" :size size)))
 
 ;; (set-chinese-font normal-font-size)
 ;; (after! org (set-org-table-font normal-font-size))
@@ -50,6 +50,10 @@
 
 ;; Chinese input method configuration
 (use-package! rime
+  ;; :bind (:map rime-mode-map
+         ;; ([f9] . rime-force-enable)
+         ;; :map rime-active-mode-map
+         ;; ([S-f9] . rime-inline-ascii))
   :init
   (setq rime-user-data-dir "~/.doom.d/Rime")
   (setq rime-show-candidate 'posframe)
@@ -127,12 +131,14 @@
 (defun on-writeroom-mode ()
   (set-special-fonts writeroom-mode))
 
-;; (add-hook 'writeroom-mode-hook #'on-writeroom-mode)
+(add-hook 'writeroom-mode-hook #'on-writeroom-mode)
 
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
+;; (setq display-line-numbers-type `nil)
 (setq display-line-numbers-type `relative)
+;; (setq linum-relative-backend 'display-line-numbers-mode)
 
 (global-display-fill-column-indicator-mode +1)
 (set-face-attribute 'fill-column-indicator nil :foreground "grey30")
@@ -159,14 +165,14 @@
 ;; (add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
 ;; (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 
-(use-package lispy
-  :config
-  (unbind-key "[" lispy-mode-map)
-  (unbind-key "[" lispy-mode-map-evilcp)
-  (unbind-key "[" lispy-mode-map-lispy)
-  (unbind-key "]" lispy-mode-map)
-  (unbind-key "]" lispy-mode-map-evilcp)
-  (unbind-key "]" lispy-mode-map-lispy))
+;; (use-package lispy
+  ;; :config
+  ;; (unbind-key "[" lispy-mode-map)
+;;   (unbind-key "[" lispy-mode-map-evilcp)
+;;   (unbind-key "[" lispy-mode-map-lispy)
+;;   (unbind-key "]" lispy-mode-map)
+;;   (unbind-key "]" lispy-mode-map-evilcp)
+;;   (unbind-key "]" lispy-mode-map-lispy))
 
 (use-package evil-pinyin
   :init
@@ -240,17 +246,17 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 ;; racket related configuration
-(setq racket-program "/Applications/Racket v8.2/bin/racket")
+;(setq racket-program "/Applications/Racket v8.2/bin/racket")
 ;; (add-hook 'racket-mode-hook #'evil-cleverparens-mode)
-(use-package racket-mode
-  :bind (:map racket-mode-map
-         ("C-c C-c" . racket-send-definition)))
+;(use-package racket-mode
+  ;:bind (:map racket-mode-map
+         ;("C-c C-c" . racket-send-definition)))
 
 (setq comint-prompt-read-only nil)
 
 (setq clojure-toplevel-inside-comment-form t)
 
-(setq lsp-ui-sideline-show-code-actions nil)
+;; (setq lsp-ui-sideline-show-code-actions nil)
 
 (setq-default evil-escape-key-sequence "kj")
 (setq-default evil-escape-delay 0.4)
@@ -258,3 +264,7 @@
 ;; (custom-set-faces
 ;; '(rainbow-delimiters-depth-1-face ((t (:foreground "darkgrey"))))
 ;; )
+
+;; to debug with DAP-MODE
+(setq dap-auto-configure-mode t)
+(require 'dap-cpptools)

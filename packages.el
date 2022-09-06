@@ -54,3 +54,4 @@
 (package! evil-pinyin)
 (package! posframe)
 (package! rime)
+(package! html-to-hiccup)
