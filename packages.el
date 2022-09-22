@@ -55,3 +55,4 @@
 (package! posframe)
 (package! rime)
 (package! html-to-hiccup)
+(package! org-drill)
