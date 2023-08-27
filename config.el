@@ -268,3 +268,33 @@
 ;; to debug with DAP-MODE
 (setq dap-auto-configure-mode t)
 (require 'dap-cpptools)
+
+;; for nbb
+(defun mm/cider-connected-hook ()
+  (when (eq 'nbb-or-scittle-or-joyride cider-cljs-repl-type)
+    (setq-local cider-show-error-buffer nil)
+    (cider-set-repl-type 'cljs)))
+(add-hook 'cider-connected-hook #'mm/cider-connected-hook)
+
+(defun mm/cider-jack-in-nbb ()
+  "Start a nbb nrepl process and connect."
+  (interactive)
+  (let* ((cider-allow-jack-in-without-project t)
+         (orig-buffer (current-buffer))
+         (params '(:jack-in-cmd "nbb nrepl-server :port 0"
+                   :cljs-repl-type nbb-or-scittle-or-joyride))
+         (params (cider--update-project-dir
+                  params)))
+    (nrepl-start-server-process
+     (plist-get params :project-dir)
+     (plist-get params :jack-in-cmd)
+     (lambda (server-buffer)
+       (with-current-buffer
+           orig-buffer
+         (cider-connect-sibling-cljs
+          params
+          server-buffer))))))
+
+(after! cider
+  (cider-register-cljs-repl-type 'nbb-or-scittle-or-joyride "(+ 1 2 3)")
+  )

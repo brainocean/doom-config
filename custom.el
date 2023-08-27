@@ -6,7 +6,8 @@
  '(custom-safe-themes
    '("cf922a7a5c514fad79c483048257c5d8f242b21987af0db813d3f0b138dfaf53" "e6f3a4a582ffb5de0471c9b640a5f0212ccf258a987ba421ae2659f1eaa39b09" default))
  '(safe-local-variable-values
-   '((eval
+   '((prettify-symbols-mode)
+     (eval
       (lambda nil
         (defun cider-jack-in-wrapper-function
             (orig-fun &rest args)
